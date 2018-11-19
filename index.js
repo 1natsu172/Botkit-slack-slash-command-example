@@ -69,6 +69,9 @@ var controller = Botkit.slackbot(config).configureSlackApp({
     scopes: ['commands'],
 });
 
+/**
+ * Setup server
+ */
 controller.setupWebserver(process.env.PORT, function (err, webserver) {
     controller.createWebhookEndpoints(controller.webserver);
 
@@ -81,10 +84,14 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
     });
 });
 
+// Wake up Bot
 let bot = controller.spawn({
     token: process.env.BOT_USER_OAUTH_ACCESS_TOKEN
 }).startRTM()
 
+/** 
+ * Save necessary information to DB storage
+ */
 bot.api.auth.test({}, (err, res) => {
     controller.storage.teams.save({
         id: res.team_id,
@@ -99,6 +106,7 @@ bot.api.auth.test({}, (err, res) => {
     })
 })
 
+// Slash-command definition
 controller.on('slash_command', function (bot, message) {
     switch (message.command) {
         case "/foodme": //handle the `/foodme` slash command. We might have others assigned to this app too!
