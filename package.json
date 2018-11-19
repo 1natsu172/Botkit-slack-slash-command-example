@@ -1,0 +1,34 @@
+{
+  "name": "awesomeslashcommand",
+  "version": "1.0.0",
+  "description": "The awesomest slash command evar.",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn bot & yarn server:tunnel",
+    "bot": "env-cmd .env node index.js",
+    "server:tunnel": "lt --port 8765 --subdomain sushi-aburi-kun"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEGoodmanWilson/easy-peasy-slash-command-app.git"
+  },
+  "keywords": [
+    "slack",
+    "slash command"
+  ],
+  "author": "D.E. Goodman-Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DEGoodmanWilson/easy-peasy-slash-command-app/issues"
+  },
+  "homepage": "https://github.com/DEGoodmanWilson/easy-peasy-slash-command-app#readme",
+  "dependencies": {
+    "botkit": "0.6.21",
+    "botkit-storage-mongo": "^1.0.2",
+    "mongodb": "^3.1.10"
+  },
+  "devDependencies": {
+    "env-cmd": "^8.0.2",
+    "localtunnel": "^1.9.1"
+  }
+}
